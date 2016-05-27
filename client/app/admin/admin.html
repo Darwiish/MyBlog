@@ -1,0 +1,83 @@
+<section class="admin-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <!--- About section-->
+      <h1 class="s-heading">About</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Image</th>
+            <th>Text</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat = "about in abouts">
+            <th scope="row"></th>
+            <td><img style="width: 70px; height: 70px;" src="{{about.image}}" /></td>
+            <td><textarea>{{about.text}}</textarea></td>
+            <td> <md-button class="md-raised md-primary"  ng-click="updateAbout(about)">Edit</md-button></td>
+          </tr>
+        </tbody>
+        <td>
+      </td>
+      </table>
+       <!--- contact section for receiving mails-->
+       <h1 class="s-heading">Mails</h1>
+       <table class="table">
+         <thead>
+           <tr>
+             <th>#</th>
+             <th>Name</th>
+             <th>Address</th>
+             <th>Email</th>
+             <th>Phone</th>
+             <th>Message</th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr ng-repeat="main in mains">
+             <th scope="row"></th>
+             <td>  {{main.Name}}</td>
+             <td>  {{main.Address}}</td>
+             <td> {{main.Email}}</td>
+             <td> {{main.PhoneNumber}}</td>
+             <td> {{main.Message}}</td>
+             <td> <md-button class="md-raised md-primary"  ng-click="deleteMain(main, $event)">
+                <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
+             </md-button></td>
+           </tr>
+         </tbody>
+         <td>
+       </td>
+       </table>
+        <!--- blog section -->
+        <h1 class="s-heading">Blogs</h1>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Title</th>
+              <th>text</th>
+              <th>image</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="blog in blogs">
+              <th scope="row"></th>
+              <td><textarea style="height: 50px;"> {{blog.Title}}</textarea></td>
+              <td><textarea>{{blog.text}}</textarea></td>
+              <td><img style="width: 70px; height: 70px;"  src="{{blog.image}}" /></td>
+              <td> <md-button class="md-raised md-primary"  ng-click="deleteBlog(blog)">Delete</md-button></td>
+              <td> <md-button class="md-raised md-primary"  ng-click="updateBlog(blog, $event)">
+                 <i class="fa fa-trash-o" aria-hidden="true"></i> Edit
+              </md-button></td>
+            </tr>
+          </tbody>
+          <td>
+        </td>
+        </table>
+    </div>
+  </div>
+</section>

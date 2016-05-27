@@ -1,0 +1,177 @@
+<md-content ng-if="!clickedBlog">
+<header class="main">
+  <div class="container">
+    <div class="row text-center">
+       <div class="col-md-12 col-sm-12">
+         <div class="site-heading wow bounceIn">
+           Welcome to my blog page
+         </div>
+       </div>
+     </div>
+     <div class="row text-center">
+        <div class="col-md-12 col-sm-12">
+          <a href="#about" class="btn btn-default">
+            Join my journey
+          </a>
+        </div>
+    </div>
+  </div>
+</header>
+
+<!---Text--->
+<section style="padding: 20px 0;" class="text-content">
+  <div class="container">
+     <div class="row text-center">
+       <div class="sub-heading">
+          My latest blogs
+       </div>
+     </div>
+  </div>
+</section>
+
+<!--Latest blog section-->
+<section style="padding: 0;">
+  <div class="container-fluid">
+     <div class="row">
+       <!--- blog post---->
+        <!--<div ng-repeat="blog in blogs >-->
+        <div ng-repeat="blog in recentblogs | orderBy: '-date'| limitTo: 3 " ng-click="clickBlog(blog)">
+          <div style="padding-left: 0; padding-right: 0;" class="col-md-4 col-sm-12">
+            <a ng-style="{'background-image':'url({{blog.image}})'}" href="#/blog/{{blog._id}}" class="blogitems">
+              <div class="overlay-color">
+                <div class="text-content">
+                  <div class="blog-header wow bounceIn">
+                    {{blog.Title}}
+                  </div>
+                  <div class="blog-sub-header">
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+     </div>
+  </div>
+</section>
+<!--</div>-->
+
+<!--- Text section --->
+<!---Text--->
+<section style="padding: 30px 0;" class="text-content">
+  <div class="container">
+     <div class="row text-center">
+         <a href="blog" class="btn btn-default-reversed">
+         View all my blogs
+       </a>
+     </div>
+  </div>
+</section>
+
+<!--About section-->
+<section id="about" class="about-bg">
+  <div ng-repeat="about in abouts" class="container">
+    <div class="row">
+      <div class="col-md-8 col-sm-12 wow slideInLeft">
+        <div class="sub-heading">
+          About me
+        </div>
+        <p>
+            <h4 class="name">{{about.text}}</h4>
+
+        </p>
+        <br />
+        <ul class="soc">
+          <li><a class="soc-facebook" href="#"></a></li>
+          <li><a class="soc-twitter" href="#"></a></li>
+          <li><a class="soc-instagram .soc-icon-last" href="#"></a></li>
+        </ul>
+      </div>
+      <div class="col-md-4 col-sm-12 wow slideInRight">
+        <img class="img-responsive img-me" src="/assets/images/me.jpg" />
+        <h4 class="name">{{about.Name}}</h4>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+<!--- Contact section -->
+<section id="contact" class="contact-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-sm-12 wow slideInLeft">
+        <div class="sub-heading">
+        Contact me
+       </div>
+       <p>
+         Feel free to get in touch with me through my email blog@abdirahman.dk or fill the contact formular.
+       </p>
+       <br />
+       <p>Find me right here:</p>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2260.521705233995!2d8.444521615607016!3d55.48843371981822!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x464b20de0dc1b019%3A0xf131cc5b28fe1f27!2sErhvervsakademi+Sydvest!5e0!3m2!1sda!2sdk!4v1458260600850" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>      </div>
+      <div class="col-md-6 col-sm-12 wow slideInRight">
+        <form name="mainForm" role="form">
+            <div class="form-group">
+              <div class="col-md-12">
+                <input placeholder="Name" data-ng-model="newMain.Name" class="form-control" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-6 col-sm-12">
+                <input placeholder="Adress" data-ng-model="newMain.Address" class="form-control" required>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <input type="Emai" placeholder="Email" data-ng-model="newMain.Email" class="form-control" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-12">
+                <input placeholder="Phone number" data-ng-model="newMain.PhoneNumber"  class="form-control" required >
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-12">
+                <textarea placeholder="Write a message..." data-ng-model="newMain.Message" class="form-control" required></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-12">
+                    <button class="btn btn-default" type="submit" ng-click="createMain(mainForm)">Send</button>
+              </div>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+</md-content>
+
+<md-content ng-if="clickedBlog">
+  <section class="blog">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+          <h1 class="blog-heading">{{clickedBlog.Title}} - <span class="blog-date">{{clickedBlog.date | date:'yyyy-MM-dd'}}</span></h1>
+          <img ng-src="{{clickedBlog.image}}">
+          <div>
+            <p class="bodytext">
+              {{clickedBlog.text}}
+            </p>
+          </div>
+          <md-button type="submit" class="md-raised md-primary" ng-click="undoBlog(blog)">Back</md-button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--- Text section --->
+  <!---Text--->
+  <section style="padding: 30px 0;" class="text-content">
+    <div class="container">
+       <div class="row text-center">
+           <a href="blog" class="btn btn-default-reversed">
+           View all my blogs
+         </a>
+       </div>
+    </div>
+  </section>
+</md-content>
